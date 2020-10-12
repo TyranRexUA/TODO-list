@@ -1,0 +1,67 @@
+.CreateModeWindow {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	background: rgba($color: black, $alpha: 0.9);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 20;
+	overflow-y: auto;
+
+	form {
+		width: 75vw;
+        min-width: 280px;
+        padding-bottom: 20px;
+
+		textarea {
+			width: 100%;
+			resize: none;
+			border-radius: 5px;
+			background: rgba($color: whitesmoke, $alpha: 0.9);
+			border: none;
+			outline: none;
+			padding: 10px;
+			font-size: 1.15rem;
+			font-weight: 400;
+		}
+
+		.btnGroup {
+			width: 100%;
+			display: flex;
+			background: linear-gradient(
+				90deg,
+				rgba($color: #2196f3, $alpha: 0.8) 0%,
+				rgba($color: #f44336, $alpha: 0.8) 100%
+			);
+			border-radius: 5px;
+
+			button {
+				height: 50px;
+				width: 50%;
+				border: none;
+				padding: 5px;
+				outline: none;
+				cursor: pointer;
+
+				&:hover {
+					box-shadow: 0 0 7px 0px rgba(3, 3, 3, 0.5);
+				}
+			}
+
+			.closeBtn {
+				background: url(./../../img/close.svg) center / contain
+					no-repeat;
+				padding: 10px;
+				background-origin: content-box;
+			}
+
+			.submitBtn {
+				background: url(./../../img/plus.svg) center / contain no-repeat;
+				background-origin: content-box;
+			}
+		}
+	}
+}
