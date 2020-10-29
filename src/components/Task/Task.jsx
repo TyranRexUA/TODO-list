@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import s from './Task.module.scss';
 import cn from 'classnames';
 
@@ -29,4 +29,4 @@ const Task = ({ done, id, text, deleteTask, changeTask }) => {
     )
 };
 
-export default memo(Task);
+export default React.memo(Task);

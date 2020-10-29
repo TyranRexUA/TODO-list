@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getTasks, createTask, deleteTask, changeTask } from '../../redux/tasksReducer';
 import CreateModeWindow from '../CreateModeWindow/CreateModeWindow';
@@ -61,4 +61,4 @@ const mapStateToProps = (state) => ({
     tasks: state.tasks,
 });
 
-export default connect(mapStateToProps, { getTasks, createTask, deleteTask, changeTask })(memo(TasksList))
+export default connect(mapStateToProps, { getTasks, createTask, deleteTask, changeTask })(React.memo(TasksList))
