@@ -2,8 +2,16 @@ import React from 'react';
 import s from './Task.module.scss';
 import cn from 'classnames';
 
+interface propsType {
+    done: boolean
+    id: string
+    text: string
+    deleteTask: (id: string) => void
+    changeTask: (id: string, text: string, done: boolean) => void
+}
 
-const Task = ({ done, id, text, deleteTask, changeTask }) => {
+
+const Task: React.FC<propsType> = ({ done, id, text, deleteTask, changeTask }) => {
     return (
         <div className={cn(s.Task, {[s.Task_done]: done})}>
 

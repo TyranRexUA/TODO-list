@@ -1,24 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { connect } from 'react-redux';
-import { getTasks, createTask, deleteTask, changeTask } from '../../redux/tasksReducer';
+import { changeTask, createTask, deleteTask, getTasks } from '../../redux/tasksReducer';
+import { stateType, taskType } from './../../types/types';
 import CreateModeWindow from '../CreateModeWindow/CreateModeWindow';
 import Task from '../Task/Task';
-import s from './TasksList.module.scss'
+import s from './TasksList.module.scss';
 
-const TasksList = ({ tasks, getTasks, createTask, deleteTask, changeTask }) => {
-    let [createMode, setCreateMode] = useState(false)
+interface mapStateToPropsType {
+    tasks: Array<taskType>
+}
+
+interface mapDispatchToPropsType {
+    getTasks: typeof getTasks
+    createTask: (text: string) => void
+    deleteTask: (id: string) => void
+    changeTask: (id: string, text: string, done: boolean) => void
+}
+
+interface ownPropsType {
+    
+}
+
+const TasksList: React.FC<mapStateToPropsType & mapDispatchToPropsType> = ({ tasks, getTasks, createTask, deleteTask, changeTask }) => {
+    let [createMode, setCreateMode] = useState<boolean>(false)
 
     useEffect(() => {
         getTasks();
     }, [])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
         createTask(e.target.elements.text.value);
         e.target.reset();
     }
 
-    const handleReset = (e) => {
+    const handleReset = () => {
         document.body.classList.remove('lock')
         setCreateMode(false);
     }
@@ -57,8 +73,8 @@ const TasksList = ({ tasks, getTasks, createTask, deleteTask, changeTask }) => {
     )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: stateType): mapStateToPropsType => ({
     tasks: state.tasks,
 });
 
-export default connect(mapStateToProps, { getTasks, createTask, deleteTask, changeTask })(React.memo(TasksList))
+export default connect<mapStateToPropsType, mapDispatchToPropsType, ownPropsType, stateType>(mapStateToProps, { getTasks, createTask, deleteTask, changeTask })(memo(TasksList))
